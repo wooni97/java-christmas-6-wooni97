@@ -1,15 +1,19 @@
 package christmas.model;
 
+import christmas.view.OutputView;
+
 import java.time.LocalDate;
 import java.util.Arrays;
 
-public class SpecialEvent extends Event {
+public class SpecialEvent implements Event {
 
     public static final String EVENT_NAME = "특별 할인";
     private static final int DISCOUNT_AMOUNT = 1000;
 
-    public SpecialEvent(LocalDate orderDate, Orders orders) {
-        super(orderDate, orders);
+    private final LocalDate orderDate;
+
+    public SpecialEvent(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
     @Override

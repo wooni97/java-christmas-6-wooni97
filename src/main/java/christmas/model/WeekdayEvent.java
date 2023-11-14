@@ -4,13 +4,17 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-public class WeekdayEvent extends Event{
+public class WeekdayEvent implements Event{
 
     public static final String EVENT_NAME = "평일 할인";
     private static final int DISCOUNT_AMOUNT_PER_MENU = 2023;
 
+    private final LocalDate orderDate;
+    private final Orders orders;
+
     public WeekdayEvent(LocalDate orderDate, Orders orders) {
-        super(orderDate, orders);
+        this.orderDate = orderDate;
+        this.orders = orders;
     }
 
     @Override

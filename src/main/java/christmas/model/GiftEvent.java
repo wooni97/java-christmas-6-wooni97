@@ -2,14 +2,16 @@ package christmas.model;
 
 import java.time.LocalDate;
 
-public class GiftEvent extends Event{
+public class GiftEvent implements Event{
 
     public static final String EVENT_NAME = "증정 이벤트";
     private static final int GIFT_EVENT_CRITERIA_AMOUNT = 120000;
     private static final MenuItem GIFT = MenuItem.샴페인;
 
-    public GiftEvent(LocalDate orderDate, Orders orders) {
-        super(orderDate, orders);
+    private final Orders orders;
+
+    public GiftEvent( Orders orders) {
+        this.orders = orders;
     }
 
     @Override
