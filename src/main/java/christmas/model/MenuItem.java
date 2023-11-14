@@ -1,5 +1,7 @@
 package christmas.model;
 
+import java.util.Arrays;
+
 public enum MenuItem {
 
     양송이수프(MenuCategory.APPETIZER, 6000),
@@ -14,11 +16,30 @@ public enum MenuItem {
     초코케이크(MenuCategory.DESSERT,15000),
     아이스크림(MenuCategory.DESSERT,5000),
 
-    제로콜라(MenuCategory.DRINK,3000),
-    레드와인(MenuCategory.DRINK,60000),
-    샴페인(MenuCategory.DRINK,25000);
+    제로콜라(MenuCategory.BEVERAGE,3000),
+    레드와인(MenuCategory.BEVERAGE,60000),
+    샴페인(MenuCategory.BEVERAGE,25000);
 
+    private final MenuCategory menuCategory;
+    private final int price;
 
     MenuItem(MenuCategory menuCategory, int price) {
+        this.menuCategory = menuCategory;
+        this.price = price;
+    }
+
+    public static MenuItem findByName(String menuName) {
+        return Arrays.stream(MenuItem.values())
+                .filter(item -> item.name().equals(menuName))
+                .findFirst()
+                .orElseThrow(IllegalStateException::new);
+    }
+
+    public MenuCategory getMenuCategory() {
+        return menuCategory;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }
