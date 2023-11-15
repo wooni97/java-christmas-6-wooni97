@@ -1,16 +1,16 @@
-package christmas.model;
+package christmas.enums;
 
 import java.util.Arrays;
 
 public enum MenuItem {
 
     양송이수프(MenuCategory.APPETIZER, 6000),
-    타파스(MenuCategory.APPETIZER,5000),
+    타파스(MenuCategory.APPETIZER,5500),
     시저샐러드(MenuCategory.APPETIZER,8000),
 
     티본스테이크(MenuCategory.MAIN_DISH,55000),
     바비큐립(MenuCategory.MAIN_DISH,54000),
-    해산물파스타(MenuCategory.MAIN_DISH,3500),
+    해산물파스타(MenuCategory.MAIN_DISH,35000),
     크리스마스파스타(MenuCategory.MAIN_DISH,25000),
 
     초코케이크(MenuCategory.DESSERT,15000),
