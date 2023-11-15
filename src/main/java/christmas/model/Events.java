@@ -32,7 +32,8 @@ public class Events {
     public Map<String, Integer> getAppliedEventAndDiscount() {
         Map<String, Integer> appliedDiscounts = new HashMap<>();
 
-        events.stream().filter(Event::isEventActive)
+        events.stream()
+                .filter(event -> event.isEventActive() && event.calculateDiscount() > 0)
                 .forEach(event -> {
                     appliedDiscounts.put(event.getEventName(), event.calculateDiscount());
                 });
