@@ -29,7 +29,7 @@ public class Events {
         events.add(new GiftEvent(orders));
     }
 
-    public Map<String, Integer> getAppliedDiscounts() {
+    public Map<String, Integer> getAppliedEventAndDiscount() {
         Map<String, Integer> appliedDiscounts = new HashMap<>();
 
         events.stream().filter(Event::isEventActive)
