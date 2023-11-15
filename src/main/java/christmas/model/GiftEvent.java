@@ -1,6 +1,7 @@
 package christmas.model;
 
-import java.time.LocalDate;
+
+import christmas.enums.MenuItem;
 
 public class GiftEvent implements Event{
 
@@ -10,7 +11,7 @@ public class GiftEvent implements Event{
 
     private final Orders orders;
 
-    public GiftEvent( Orders orders) {
+    public GiftEvent(Orders orders) {
         this.orders = orders;
     }
 
