@@ -13,15 +13,20 @@ public class Events {
     public Events(LocalDate orderDate, Orders orders) {
         this.events = new ArrayList<>();
 
-        initializeEvents(orderDate, orders);
+        if (isEventApplicable(orders)) {
+            initializeEvents(visitDate, orders);
+        }
     }
 
-    private void initializeEvents(LocalDate orderDate, Orders orders) {
-        events.add(new ChristmasEvent(orderDate, orders));
-        events.add(new WeekdayEvent(orderDate, orders));
-        events.add(new WeekendEvent(orderDate, orders));
-        events.add(new SpecialEvent(orderDate, orders));
-        events.add(new GiftEvent(orderDate, orders));
+    private boolean isEventApplicable(Orders orders) {
+        return orders.getTotalPrice() >= EVENT_APPLICABLE_MINIMUM_AMOUNT;
+    }
+    private void initializeEvents(LocalDate visitDate, Orders orders) {
+        events.add(new ChristmasEvent(visitDate));
+        events.add(new WeekdayEvent(visitDate, orders));
+        events.add(new WeekendEvent(visitDate, orders));
+        events.add(new SpecialEvent(visitDate));
+        events.add(new GiftEvent(orders));
     }
 
     public Map<String, Integer> getAppliedDiscounts() {
