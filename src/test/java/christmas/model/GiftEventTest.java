@@ -1,12 +1,11 @@
 package christmas.model;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import christmas.enums.MenuItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.time.LocalDate;
 import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GiftEventTest {
 
@@ -19,10 +18,8 @@ class GiftEventTest {
 
         Orders orders = new Orders(Arrays.asList(order1, order2));
 
-        LocalDate orderDate = LocalDate.of(2023,12, 10);
-
         //when
-        GiftEvent giftEvent = new GiftEvent(orderDate, orders);
+        GiftEvent giftEvent = new GiftEvent(orders);
 
         //then
         assertEquals(MenuItem.샴페인.getPrice(), giftEvent.calculateDiscount());
