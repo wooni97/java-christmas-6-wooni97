@@ -1,5 +1,7 @@
 package christmas.model;
 
+import christmas.enums.MenuCategory;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -8,11 +10,11 @@ public class WeekendEvent implements Event{
     public static final String EVENT_NAME = "주말 할인";
     private static final int DISCOUNT_AMOUNT_PER_MENU = 2023;
 
-    private final LocalDate orderDate;
+    private final LocalDate visitDate;
     private final Orders orders;
 
-    public WeekendEvent(LocalDate orderDate, Orders orders) {
-        this.orderDate = orderDate;
+    public WeekendEvent(LocalDate visitDate, Orders orders) {
+        this.visitDate = visitDate;
         this.orders = orders;
     }
 
@@ -31,7 +33,7 @@ public class WeekendEvent implements Event{
 
     @Override
     public boolean isEventActive() {
-        return Weekend.isWeekEnd(orderDate.getDayOfWeek());
+        return Weekend.isWeekEnd(visitDate.getDayOfWeek());
     }
 
     @Override

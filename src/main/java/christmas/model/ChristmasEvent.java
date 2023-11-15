@@ -10,16 +10,15 @@ public class ChristmasEvent implements Event{
     private static final LocalDate START_DATE = LocalDate.of(2023, 12, 1);
     private static final LocalDate END_DATE = LocalDate.of(2023, 12,25);
 
-    private final LocalDate orderDate;
-
-    public ChristmasEvent(LocalDate orderDate) {
-        this.orderDate = orderDate;
+    private final LocalDate visitDate;
+    public ChristmasEvent(LocalDate visitDate) {
+        this.visitDate = visitDate;
     }
 
     @Override
     public int calculateDiscount() {
         if (isEventActive()) {
-            int daysDifference = (int) ChronoUnit.DAYS.between(START_DATE, this.orderDate);
+            int daysDifference = (int) ChronoUnit.DAYS.between(START_DATE, this.visitDate);
             return STARTING_AMOUNT + (daysDifference) * DAILY_INCREASE;
         }
 
@@ -28,7 +27,7 @@ public class ChristmasEvent implements Event{
 
     @Override
     public boolean isEventActive() {
-        return END_DATE.isAfter(this.orderDate);
+        return !this.visitDate.isAfter(END_DATE);
     }
 
     @Override

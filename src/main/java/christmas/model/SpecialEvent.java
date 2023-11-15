@@ -10,10 +10,10 @@ public class SpecialEvent implements Event {
     public static final String EVENT_NAME = "특별 할인";
     private static final int DISCOUNT_AMOUNT = 1000;
 
-    private final LocalDate orderDate;
+    private final LocalDate visitDate;
 
-    public SpecialEvent(LocalDate orderDate) {
-        this.orderDate = orderDate;
+    public SpecialEvent(LocalDate visitDate) {
+        this.visitDate = visitDate;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class SpecialEvent implements Event {
 
     @Override
     public boolean isEventActive() {
-        return SpecialDay.isSpecialDay(orderDate.getDayOfMonth());
+        return SpecialDay.isSpecialDay(visitDate.getDayOfMonth());
     }
 
     @Override
