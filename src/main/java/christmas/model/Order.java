@@ -1,5 +1,8 @@
 package christmas.model;
 
+import christmas.constant.ErrorMessage;
+import christmas.enums.MenuItem;
+
 public class Order {
     private final MenuItem menuItem;
     private final int orderCount;
@@ -8,7 +11,7 @@ public class Order {
     public Order(String menuName, int orderCount) {
         validate(menuName, orderCount);
 
-        this.menuItem = validateMenuItemExists(menuName);
+        this.menuItem = MenuItem.findByName(menuName);
         this.orderCount = orderCount;
     }
 
@@ -18,17 +21,17 @@ public class Order {
         validateOrderCount(orderCount);
     }
 
-    private MenuItem validateMenuItemExists(String menuName) {
+    private void validateMenuItemExists(String menuName) {
         try {
-            return MenuItem.findByName(menuName);
+            MenuItem.findByName(menuName);
         } catch (IllegalStateException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ORDER_INVALID_ERROR_MESSAGE);
         }
     }
 
     private void validateOrderCount(int orderCount) {
         if (orderCount < 1) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ORDER_INVALID_ERROR_MESSAGE);
         }
     }
 

@@ -1,10 +1,13 @@
 package christmas.model;
 
+import christmas.constant.ErrorMessage;
+import christmas.enums.MenuCategory;
+
 import java.util.*;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class Orders implements Iterable{
+public class Orders implements Iterable<Order> {
     private static final int MAX_TOTAL_ORDER_COUNT = 20;
     private final List<Order> orders;
 
@@ -19,22 +22,24 @@ public class Orders implements Iterable{
         validateTotalOrderCountLimit(orders);
         validateNotOnlyBeverageOrder(orders);
     }
+
     private void validateMenuNameNotDuplicated(List<Order> orders) {
         Set<String> menuNames = new HashSet<>();
 
         orders.forEach(order -> {
-            if(!menuNames.add(order.getMenuItem().name())){
-                throw new IllegalArgumentException();
-            }});
+            if (!menuNames.add(order.getMenuItem().name())) {
+                throw new IllegalArgumentException(ErrorMessage.ORDER_INVALID_ERROR_MESSAGE);
+            }
+        });
     }
 
-    private void validateTotalOrderCountLimit(List<Order> orders) {
+    private void validateTotalOrderCountLimit(List<Order> orders){
         int totalOrderCount = orders.stream()
                 .mapToInt(Order::getOrderCount)
                 .sum();
 
         if (totalOrderCount > MAX_TOTAL_ORDER_COUNT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ORDER_INVALID_ERROR_MESSAGE);
         }
     }
 
@@ -44,21 +49,14 @@ public class Orders implements Iterable{
                 .count();
 
         if (beverageCount == orders.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ORDER_INVALID_ERROR_MESSAGE);
         }
     }
 
     public int getTotalPrice() {
-        int totalPrice = 0;
-
-        for (Order order : orders) {
-            int itemPrice = order.getMenuItem().getPrice();
-            int orderCount = order.getOrderCount();
-
-            totalPrice += orderCount * itemPrice;
-        }
-
-        return totalPrice;
+        return orders.stream()
+                .mapToInt(order -> order.getMenuItem().getPrice() * order.getOrderCount())
+                .sum();
     }
 
     public Stream<Order> stream() {

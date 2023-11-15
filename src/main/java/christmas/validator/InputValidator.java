@@ -1,5 +1,7 @@
 package christmas.validator;
 
+import christmas.constant.ErrorMessage;
+
 public class InputValidator {
 
     private InputValidator() {
@@ -9,7 +11,7 @@ public class InputValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.VISIT_DATE_INVALID_ERROR_MESSAGE);
         }
     }
 
@@ -17,7 +19,7 @@ public class InputValidator {
         String regex = "([a-zA-Z가-힣]+-\\d+,)*[a-zA-Z가-힣]+-\\d+";
 
         if(!input.matches(regex)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ErrorMessage.ORDER_INVALID_ERROR_MESSAGE);
         }
     }
 
