@@ -43,6 +43,13 @@ public class Events {
 
     public int getTotalDiscountAmount() {
         return events.stream()
+                .filter(event -> event.isEventActive() && !(event instanceof GiftEvent))
+                .mapToInt(Event::calculateDiscount)
+                .sum();
+    }
+
+    public int getTotalBenefitAmount() {
+        return events.stream()
                 .filter(Event::isEventActive)
                 .mapToInt(Event::calculateDiscount)
                 .sum();
