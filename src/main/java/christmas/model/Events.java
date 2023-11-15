@@ -54,4 +54,14 @@ public class Events {
                 .mapToInt(Event::calculateDiscount)
                 .sum();
     }
+
+    @Override
+    public Iterator<Event> iterator() {
+        return events.iterator();
+    }
+
+    public Stream<Event> stream() {
+        Spliterator<Event> spliterator = Spliterators.spliteratorUnknownSize(iterator(), Spliterator.ORDERED);
+        return StreamSupport.stream(spliterator, false);
+    }
 }
