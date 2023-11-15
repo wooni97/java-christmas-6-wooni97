@@ -13,6 +13,7 @@ class EventBadgeTest {
     @DisplayName("총 혜택 금액이 20000원이 넘을 시 산타 배지")
     @Test
     void eventBadgeTest() {
+
         //given
         LocalDate visitDate = LocalDate.of(2023, 12, 3);
 

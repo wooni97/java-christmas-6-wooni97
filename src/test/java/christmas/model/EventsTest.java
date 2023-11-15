@@ -12,6 +12,7 @@ class EventsTest {
     @DisplayName("총 주문 금액이 기준 미달일 시 이벤트 적용 되지 않는다")
     @Test
     void eventApplicapableTest() {
+
         //given
         LocalDate visitDate = LocalDate.of(2023, 12, 26);
 
@@ -30,6 +31,7 @@ class EventsTest {
     @DisplayName("이벤트 총 할인 금액 테스트")
     @Test
     void eventCalculateDiscountAmountTest() {
+
         //given
         LocalDate visitDate = LocalDate.of(2023, 12, 3);
 
@@ -50,6 +52,7 @@ class EventsTest {
     @DisplayName("이벤트 총 할인 금액 테스트")
     @Test
     void eventCalculateBenfitAmountTest() {
+
         //given
         LocalDate visitDate = LocalDate.of(2023, 12, 3);
 
