@@ -1,16 +1,16 @@
 package christmas.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
-public class Events {
+public class Events implements Iterable<Event>{
 
+    private static final int EVENT_APPLICABLE_MINIMUM_AMOUNT = 10000;
     private final List<Event> events;
 
-    public Events(LocalDate orderDate, Orders orders) {
+    public Events(LocalDate visitDate, Orders orders) {
         this.events = new ArrayList<>();
 
         if (isEventApplicable(orders)) {
