@@ -17,8 +17,8 @@ public class OrderDtos implements Iterable<OrderDtos.OrderDto> {
         return orderDtos.iterator();
     }
 
-
     public static class OrderDto {
+
         private final String menuName;
         private final int orderCount;
 
@@ -35,5 +35,4 @@ public class OrderDtos implements Iterable<OrderDtos.OrderDto> {
             return orderCount;
         }
     }
-
 }

@@ -5,6 +5,7 @@ import christmas.model.*;
 import christmas.service.EventPlannerService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+
 import java.util.Map;
 
 public class EventPlannerController {
@@ -12,6 +13,7 @@ public class EventPlannerController {
     private final InputView inputView;
     private final OutputView outputView;
     private final EventPlannerService eventPlannerService;
+
     public EventPlannerController(InputView inputView, OutputView outputView, EventPlannerService eventPlannerService) {
         this.inputView = inputView;
         this.outputView = outputView;
@@ -28,30 +30,27 @@ public class EventPlannerController {
     }
 
     private VisitDate readVisitDate() {
-
         while (true) {
             try {
                 int visitDate = inputView.readDate();
                 return new VisitDate(visitDate);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                outputView.printBlankLine();
+                OutputView.printBlankLine();
             }
         }
     }
 
     private Orders readOrders() {
-
         while (true) {
             try {
                 OrderDtos orderInput = inputView.readOrders();
                 return eventPlannerService.makeOrders(orderInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                outputView.printBlankLine();
+                OutputView.printBlankLine();
             }
         }
-
     }
 
     private void printEventPlan(VisitDate visitDate, Orders orders, Events events) {
@@ -78,6 +77,7 @@ public class EventPlannerController {
     private void printGiftEvent(Events events) {
         outputView.printGiftEventInformation(eventPlannerService.isGiftEventActivated(events));
     }
+
     private void printAppliedEvents(Events events) {
         Map<String, Integer> eventAndDiscount = events.getAppliedEventAndDiscount();
 
@@ -101,5 +101,4 @@ public class EventPlannerController {
 
         outputView.printEventBadge(badgeName);
     }
-
 }

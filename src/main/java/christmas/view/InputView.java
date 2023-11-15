@@ -7,7 +7,6 @@ import christmas.validator.InputValidator;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class InputView {
 
     public int readDate() {
@@ -19,9 +18,11 @@ public class InputView {
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                OutputView.printBlankLine();
             }
         }
     }
+
     public OrderDtos readOrders() {
         while (true) {
             try {
@@ -31,6 +32,7 @@ public class InputView {
                 return requestOrdersMapper(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                OutputView.printBlankLine();
             }
         }
     }

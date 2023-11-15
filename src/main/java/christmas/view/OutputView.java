@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.constant.Number;
 import christmas.enums.MenuItem;
 import christmas.model.Orders;
 import christmas.model.VisitDate;
@@ -27,16 +28,22 @@ public class OutputView {
         printBlankLine();
 
         System.out.println("<할인 전 총주문 금액>");
+
         System.out.printf("%,d원%n", totalPrice);
+
+        if(totalPrice < Number.EVENT_APPLICABLE_MINIMUM_AMOUNT) {
+            System.out.printf("(안내 : %d원 이상 주문 시 이벤트가 적용됩니다.%n)", Number.EVENT_APPLICABLE_MINIMUM_AMOUNT);
+        }
     }
 
     public void printGiftEventInformation(Boolean applied) {
         printBlankLine();
+
         System.out.println("<증정 메뉴>");
 
         if (applied) {
-            System.out.printf("%s 1개", MenuItem.샴페인.name());
-            printBlankLine();
+            System.out.printf("%s 1개%n", MenuItem.샴페인.name());
+
             return;
         }
 
@@ -44,6 +51,7 @@ public class OutputView {
     }
     public void printAppliedEventAndDiscount(Map<String, Integer> eventAndDiscounts) {
         printBlankLine();
+
         System.out.println("<혜택 내역>");
 
         if (eventAndDiscounts.isEmpty()) {
@@ -59,8 +67,8 @@ public class OutputView {
 
         System.out.println("<총혜택 금액>");
 
-        System.out.printf("%,d원", benefitAmount);
-        printBlankLine();
+        System.out.printf("%,d원%n", benefitAmount);
+
     }
 
     public void printTotalAmountAfterDiscount(int amount) {
@@ -68,19 +76,19 @@ public class OutputView {
 
         System.out.println("<할인 후 예상 결제 금액>");
 
-        System.out.printf("%,d원", amount);
-        printBlankLine();
+        System.out.printf("%,d원%n", amount);
+
     }
 
     public void printEventBadge(String badgeName) {
         printBlankLine();
 
         System.out.println("<12월 이벤트 배지>");
+
         System.out.println(badgeName);
-        printBlankLine();
     }
 
-    public void printBlankLine() {
-        System.out.println(" ");
+    public static void printBlankLine() {
+        System.out.println();
     }
 }

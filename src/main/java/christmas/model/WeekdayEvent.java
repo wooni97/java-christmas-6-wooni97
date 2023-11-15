@@ -1,12 +1,11 @@
 package christmas.model;
 
 import christmas.enums.MenuCategory;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-public class WeekdayEvent implements Event{
+public class WeekdayEvent implements Event {
 
     public static final String EVENT_NAME = "평일 할인";
     private static final int DISCOUNT_AMOUNT_PER_MENU = 2023;
@@ -58,6 +57,5 @@ public class WeekdayEvent implements Event{
             return Arrays.stream(Weekday.values())
                     .anyMatch(weekday -> weekday.dayOfWeek.equals(dayOfWeek));
         }
-
     }
 }

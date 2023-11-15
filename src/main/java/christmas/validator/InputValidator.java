@@ -18,10 +18,8 @@ public class InputValidator {
     public static void orderInputValidator(String input) {
         String regex = "([a-zA-Z가-힣]+-\\d+,)*[a-zA-Z가-힣]+-\\d+";
 
-        if(!input.matches(regex)) {
+        if (!input.matches(regex)) {
             throw new IllegalArgumentException(ErrorMessage.ORDER_INVALID_ERROR_MESSAGE);
         }
     }
-
-
 }

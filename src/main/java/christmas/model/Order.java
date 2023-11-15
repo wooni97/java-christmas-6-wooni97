@@ -4,9 +4,9 @@ import christmas.constant.ErrorMessage;
 import christmas.enums.MenuItem;
 
 public class Order {
+
     private final MenuItem menuItem;
     private final int orderCount;
-
 
     public Order(String menuName, int orderCount) {
         validate(menuName, orderCount);

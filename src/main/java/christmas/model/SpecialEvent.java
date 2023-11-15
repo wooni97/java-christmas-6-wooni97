@@ -1,7 +1,5 @@
 package christmas.model;
 
-import christmas.view.OutputView;
-
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -54,6 +52,5 @@ public class SpecialEvent implements Event {
                     .anyMatch(specialDay -> specialDay.day == day);
 
         }
-
     }
 }
