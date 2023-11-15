@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
 class ChristmasEventTest {
-    
+
     @DisplayName("할인 적용 가능 날짜일 시 할인 가격 테스트")
     @Test
     void calculateDiscountWhenEventConditionSatisfied() {
